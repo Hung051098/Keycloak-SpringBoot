@@ -1,72 +1,93 @@
-﻿Dựng Keycloak trong Spring Boot
+Dựng Keycloak trong Spring Boot
 B1: Tải Keycloak: Keycloak - Downloads Archive - 12.0.4
-• Giải nén rồi bật cmd gõ: ./standalone.sh -Djboss.socket.binding.port-offset=100
+•	Giải nén rồi bật cmd gõ: ./standalone.sh -Djboss.socket.binding.port-offset=100
+ ![image](https://user-images.githubusercontent.com/39266629/127840380-d78122ff-9000-4e13-8a77-da894d334b4e.png)
 
 B2: Truy cập Welcome to Keycloak
-• Tạo account 
-
-![image](https://user-images.githubusercontent.com/39266629/127840261-69fba091-72cb-4e07-8bdc-b4172bb77133.png)
-
-
-
-
-
-
-
-
-
-
-
-•  Đăng nhập
-
-
-• Tạo Realm
+•	Tạo account 
  
 
-• Add Client
+![image](https://user-images.githubusercontent.com/39266629/127840390-c1ff0474-38ed-409d-b09a-b04c1f5415ef.png)
+
+
+
+
+
+
+
+
+
+
+•	 Đăng nhập
  
+![image](https://user-images.githubusercontent.com/39266629/127840416-afd93abf-36c3-4269-be1c-ba4ee5a895c6.png)
+
+•	Tạo Realm
+   ![image](https://user-images.githubusercontent.com/39266629/127840437-feff51c9-dd2a-4bf3-ab4d-ee8033eb3a0c.png)
+![image](https://user-images.githubusercontent.com/39266629/127840453-36e096f2-985c-4b58-acc3-4363dc26738d.png)
+
+
+•	Add Client
+   ![image](https://user-images.githubusercontent.com/39266629/127840462-aed8cca2-0aec-44f4-83a8-7f1054b4b931.png)
+![image](https://user-images.githubusercontent.com/39266629/127840475-428d02f5-95c2-4553-9e9f-c38c3636ce25.png)
+
 
 Root URL: là địa chỉ và port start project
 
-• Add Roles
+•	Add Roles
+![image](https://user-images.githubusercontent.com/39266629/127840497-8432414e-98e8-4b76-83de-a0a9f06eb826.png)
+![image](https://user-images.githubusercontent.com/39266629/127840521-4af4651c-f9d7-4443-ae31-4b8d6d971703.png)
 
-  
-• Add U	ser
+    
+•	Add User
+ ![image](https://user-images.githubusercontent.com/39266629/127840538-ad76c789-7fcb-4631-a3bf-b8d0eb0b2891.png)
+![image](https://user-images.githubusercontent.com/39266629/127840550-16daee63-9eb4-4dc2-b5f8-b54b00379cda.png)
 
+ 
 
+•	Set lại password
+ ![image](https://user-images.githubusercontent.com/39266629/127840569-8127acd2-d3ef-43c4-8355-637657c2c8f2.png)
+![image](https://user-images.githubusercontent.com/39266629/127840582-222d07c3-3638-4ca6-be30-3507d9ab5557.png)
 
-• Set lại password
-
-
-•  Add role cho user
+ 
+•	 Add role cho user
+ ![image](https://user-images.githubusercontent.com/39266629/127840596-ec4aaa34-a339-409c-8500-0447c4175e71.png)
 
 
 B3: Quay lại Realm setting 
-• Click vào OpenID Endpoint Configuration
-
+•	Click vào OpenID Endpoint Configuration
+![image](https://user-images.githubusercontent.com/39266629/127840619-06e7930c-0ca4-4ec9-8f83-33db41061bb3.png)
 
  
-• Tiếp đó Gọi API 
+ 
+•	Tiếp đó Gọi API 
+ ![image](https://user-images.githubusercontent.com/39266629/127840639-359bbfc6-de74-4487-bf04-90c3322bed39.png)
 
 
-•  Tiếp đó vào phần Client click vào sso_login nãy mới tạo
+•	 Tiếp đó vào phần Client click vào sso_login nãy mới tạo
+ ![image](https://user-images.githubusercontent.com/39266629/127840654-5471f13e-8ea8-42be-8e42-49bcf9a90dde.png)
 
 Copy secret_key
  
-• Gọi Postman
+•	Gọi Postman
+ ![image](https://user-images.githubusercontent.com/39266629/127840683-50629d87-815b-4981-8f6e-1c672a3f0b71.png)
 
 
  grant_type: để mặc đinh là password
-⇨ Đã lấy được access_token
+	Đã lấy được access_token
 B4: Tạo project Spring Boot
-•  Tạo Spring Boot Project
+•	 Tạo Spring Boot Project
+ ![image](https://user-images.githubusercontent.com/39266629/127840761-c14e2962-45ce-4add-b29a-20fdbff9018c.png)
+![image](https://user-images.githubusercontent.com/39266629/127840786-398040c0-9b6e-47bf-a784-43984d9fa54a.png)
 
+ 
 
+•	Add  Dependencies
+ ![image](https://user-images.githubusercontent.com/39266629/127840800-7aaebfcd-e4b8-41ce-96ac-b0b8c6ffc529.png)
+![image](https://user-images.githubusercontent.com/39266629/127840809-90fa4e72-e2f0-49e8-8399-6e1ea2e2daa6.png)
 
-• Add  Dependencies
-
-
-• File pom như sau:
+ 
+•	File pom như sau:
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -151,9 +172,10 @@ B4: Tạo project Spring Boot
 
 </project>
 
-• Đổi version Spring boot
+•	Đổi version Spring boot
+ ![image](https://user-images.githubusercontent.com/39266629/127840834-4350c5b4-63e9-468c-837c-86a86bfbbf21.png)
 
-•  Cấu hình .properties
+•	 Cấu hình .properties
 ### server port
 server.port=22001
 
@@ -167,10 +189,10 @@ keycloak.public-client=true
 keycloak.principal-attribute=preferred_username
 keycloak.credentials.secret =452b4a3f-d176-4c0c-aae3-fa73b28f3ccf
 
-•  Để phân quyền cho acc có role là user và url là /rest/* cấu hình .properties như sau:
-       keycloak.security-constraints[0].authRoles[0]=user
+•	 Để phân quyền cho acc có role là user và url là /rest/* cấu hình .properties như sau:
+keycloak.security-constraints[0].authRoles[0]=user
 keycloak.security-constraints[0].securityCollections[0].patterns[0]=/rest/*
-•  Rest Api
+•	 Rest Api
 package com.example.keycloakspringboot.rest;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -187,10 +209,12 @@ public class ApiRest {
 	}
 }
 
-•  Gọi api
+•	 Gọi api
+ ![image](https://user-images.githubusercontent.com/39266629/127840858-f6730e63-305e-419a-bc8c-afc8b144666f.png)
+![image](https://user-images.githubusercontent.com/39266629/127840867-42bce3cd-e638-4721-b240-3465fe7374c0.png)
 
-
-•  Config Spring security
+ 
+•	 Config Spring security
 Thêm Dependencies
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -198,13 +222,13 @@ Thêm Dependencies
 			<version>2.4.3</version>
 	</dependency>
 
-• SecurityConfig Class
+•	SecurityConfig Class
  
 @Configuration
 @EnableWebSecurity
 @ComponentScan(basePackageClasses = KeycloakSecurityComponents.class)
 public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
-       @Autowired
+@Autowired
     public void configureGlobal(
       AuthenticationManagerBuilder auth) throws Exception {
  
@@ -237,8 +261,8 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
           .permitAll();
     }
 }
-•  Comment lại phân quyền trong file .properties
-       ### server port
+•	 Comment lại phân quyền trong file .properties
+### server port
 server.port=22001
 
 #Keycloak Configuration
@@ -254,4 +278,3 @@ keycloak.credentials.secret =452b4a3f-d176-4c0c-aae3-fa73b28f3ccf
 B5: Gọi lại API
 Tài liệu tham khảo: A Quick Guide to Using Keycloak with Spring Boot | Baeldung
 Kết thúc
-
