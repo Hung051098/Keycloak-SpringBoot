@@ -190,17 +190,17 @@ B4: Tạo project Spring Boot
 
 •	 Cấu hình .properties
 ### server port
-server.port=22001
+	server.port=22001
 
-#Keycloak Configuration
-keycloak.auth-server-url=http://localhost:8180/auth
-keycloak.realm=keycloakspringboot
-keycloak.resource=sso_login
-keycloak.public-client=true
-#keycloak.security-constraints[0].authRoles[0]=user
-#keycloak.security-constraints[0].securityCollections[0].patterns[0]=/customers/*
-keycloak.principal-attribute=preferred_username
-keycloak.credentials.secret =452b4a3f-d176-4c0c-aae3-fa73b28f3ccf
+	#Keycloak Configuration
+	keycloak.auth-server-url=http://localhost:8180/auth
+	keycloak.realm=keycloakspringboot
+	keycloak.resource=sso_login
+	keycloak.public-client=true
+	#keycloak.security-constraints[0].authRoles[0]=user
+	#keycloak.security-constraints[0].securityCollections[0].patterns[0]=/customers/*
+	keycloak.principal-attribute=preferred_username
+	keycloak.credentials.secret =452b4a3f-d176-4c0c-aae3-fa73b28f3ccf
 
 •	 Để phân quyền cho acc có role là user và url là /rest/* cấu hình .properties như sau:
 keycloak.security-constraints[0].authRoles[0]=user
