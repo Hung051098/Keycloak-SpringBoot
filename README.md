@@ -5,6 +5,7 @@ B1: Tải Keycloak: Keycloak - Downloads Archive - 12.0.4
 B2: Truy cập Welcome to Keycloak
 • Tạo account 
 
+![image](https://user-images.githubusercontent.com/39266629/127840261-69fba091-72cb-4e07-8bdc-b4172bb77133.png)
 
 
 
