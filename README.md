@@ -292,6 +292,9 @@ Thêm Dependencies
 
 	#keycloak.security-constraints[0].authRoles[0]=user
 	#keycloak.security-constraints[0].securityCollections[0].patterns[0]=/rest/*
+	
 B5: Gọi lại API
-Tài liệu tham khảo: A Quick Guide to Using Keycloak with Spring Boot | Baeldung
+
+Tài liệu tham khảo: https://www.baeldung.com/spring-boot-keycloak
+
 Kết thúc
