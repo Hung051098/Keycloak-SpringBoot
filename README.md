@@ -206,21 +206,22 @@ B4: Tạo project Spring Boot
 keycloak.security-constraints[0].authRoles[0]=user
 keycloak.security-constraints[0].securityCollections[0].patterns[0]=/rest/*
 •	 Rest Api
-package com.example.keycloakspringboot.rest;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+	package com.example.keycloakspringboot.rest;
 
-@RestController
-@RequestMapping("/rest")
-public class ApiRest {
+	import org.springframework.web.bind.annotation.GetMapping;
+	import org.springframework.web.bind.annotation.RequestMapping;
+	import org.springframework.web.bind.annotation.RestController;
 
-	@GetMapping("/hung")
-	public String work() {
-		return "Working ...";
+	@RestController
+	@RequestMapping("/rest")
+	public class ApiRest {
+
+		@GetMapping("/hung")
+		public String work() {
+			return "Working ...";
+		}
 	}
-}
 
 •	 Gọi api
 
@@ -229,66 +230,68 @@ public class ApiRest {
 
  
 •	 Config Spring security
+
 Thêm Dependencies
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 			<version>2.4.3</version>
-	</dependency>
+		</dependency>
 
 •	SecurityConfig Class
  
-@Configuration
-@EnableWebSecurity
-@ComponentScan(basePackageClasses = KeycloakSecurityComponents.class)
-public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
-@Autowired
-    public void configureGlobal(
-      AuthenticationManagerBuilder auth) throws Exception {
- 
-        KeycloakAuthenticationProvider keycloakAuthenticationProvider
-          = keycloakAuthenticationProvider();
-        keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(
-          new SimpleAuthorityMapper());
-        auth.authenticationProvider(keycloakAuthenticationProvider);
-    }
+	@Configuration
+	@EnableWebSecurity
+	@ComponentScan(basePackageClasses = KeycloakSecurityComponents.class)
+	public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
+	@Autowired
+	    public void configureGlobal(
+	      AuthenticationManagerBuilder auth) throws Exception {
 
-    @Bean
-    public KeycloakSpringBootConfigResolver KeycloakConfigResolver() {
-        return new KeycloakSpringBootConfigResolver();
-    }
+		KeycloakAuthenticationProvider keycloakAuthenticationProvider
+		  = keycloakAuthenticationProvider();
+		keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(
+		  new SimpleAuthorityMapper());
+		auth.authenticationProvider(keycloakAuthenticationProvider);
+	    }
 
-    @Bean
-    @Override
-    protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
-        return new RegisterSessionAuthenticationStrategy(
-          new SessionRegistryImpl());
-    }
+	    @Bean
+	    public KeycloakSpringBootConfigResolver KeycloakConfigResolver() {
+		return new KeycloakSpringBootConfigResolver();
+	    }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
-        http.authorizeRequests()
-          .antMatchers("/rest/*")
-          .hasRole("user")
-          .anyRequest()
-          .permitAll();
-    }
-}
+	    @Bean
+	    @Override
+	    protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
+		return new RegisterSessionAuthenticationStrategy(
+		  new SessionRegistryImpl());
+	    }
+
+	    @Override
+	    protected void configure(HttpSecurity http) throws Exception {
+		super.configure(http);
+		http.authorizeRequests()
+		  .antMatchers("/rest/*")
+		  .hasRole("user")
+		  .anyRequest()
+		  .permitAll();
+	    }
+	}
 •	 Comment lại phân quyền trong file .properties
-### server port
-server.port=22001
+	### server port
+	server.port=22001
 
-#Keycloak Configuration
-keycloak.auth-server-url=http://localhost:8180/auth
-keycloak.realm=keycloakspringboot
-keycloak.resource=sso_login
-keycloak.public-client=true
-keycloak.principal-attribute=preferred_username
-keycloak.credentials.secret =452b4a3f-d176-4c0c-aae3-fa73b28f3ccf
+	#Keycloak Configuration
+	keycloak.auth-server-url=http://localhost:8180/auth
+	keycloak.realm=keycloakspringboot
+	keycloak.resource=sso_login
+	keycloak.public-client=true
+	keycloak.principal-attribute=preferred_username
+	keycloak.credentials.secret =452b4a3f-d176-4c0c-aae3-fa73b28f3ccf
 
-#keycloak.security-constraints[0].authRoles[0]=user
-#keycloak.security-constraints[0].securityCollections[0].patterns[0]=/rest/*
+	#keycloak.security-constraints[0].authRoles[0]=user
+	#keycloak.security-constraints[0].securityCollections[0].patterns[0]=/rest/*
 B5: Gọi lại API
 Tài liệu tham khảo: A Quick Guide to Using Keycloak with Spring Boot | Baeldung
 Kết thúc
